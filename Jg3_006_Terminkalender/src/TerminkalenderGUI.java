@@ -24,10 +24,13 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
         initComponents();
         try {
             bl.load(new File("./data.bin"));
+
         }catch (EOFException ex) {
             
         }
-        catch (Exception ex) {
+         catch (Exception ex) {
+            
+
             JOptionPane.showMessageDialog(this, "Exception: "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         liDisplay.setModel(bl);
@@ -121,8 +124,12 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
 
     private void miDelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDelActionPerformed
     {//GEN-HEADEREND:event_miDelActionPerformed
-
-        bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+        int[] idx = liDisplay.getSelectedIndices();
+        
+        for(int i = idx.length-1 ; i >= 0; i--)
+        {
+            bl.remove((Appointment) bl.getElementAt(idx[i]));
+        }
     }//GEN-LAST:event_miDelActionPerformed
 
     private void miChangeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miChangeActionPerformed
