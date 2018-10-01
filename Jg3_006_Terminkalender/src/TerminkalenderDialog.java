@@ -30,68 +30,92 @@ public class TerminkalenderDialog extends javax.swing.JDialog
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        lbDay = new javax.swing.JLabel();
+        tfDay = new javax.swing.JTextField();
+        lbMonth = new javax.swing.JLabel();
+        tfMonth = new javax.swing.JTextField();
+        lbYear = new javax.swing.JLabel();
+        tfYear = new javax.swing.JTextField();
+        lbHour = new javax.swing.JLabel();
+        tfHour = new javax.swing.JTextField();
+        lbMin = new javax.swing.JLabel();
+        tfMin = new javax.swing.JTextField();
+        lbText = new javax.swing.JLabel();
+        tfText = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(7, 2));
 
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
+        lbDay.setText("Tag: ");
+        getContentPane().add(lbDay);
 
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1);
+        tfDay.setText("jTextField1");
+        getContentPane().add(tfDay);
 
-        jLabel2.setText("jLabel1");
-        getContentPane().add(jLabel2);
+        lbMonth.setText("Monat: ");
+        getContentPane().add(lbMonth);
 
-        jTextField2.setText("jTextField1");
-        getContentPane().add(jTextField2);
+        tfMonth.setText("jTextField1");
+        getContentPane().add(tfMonth);
 
-        jLabel3.setText("jLabel1");
-        getContentPane().add(jLabel3);
+        lbYear.setText("Jahr: ");
+        getContentPane().add(lbYear);
 
-        jTextField3.setText("jTextField1");
-        getContentPane().add(jTextField3);
+        tfYear.setText("jTextField1");
+        getContentPane().add(tfYear);
 
-        jLabel4.setText("jLabel1");
-        getContentPane().add(jLabel4);
+        lbHour.setText("Stunde: ");
+        getContentPane().add(lbHour);
 
-        jTextField4.setText("jTextField1");
-        getContentPane().add(jTextField4);
+        tfHour.setText("jTextField1");
+        getContentPane().add(tfHour);
 
-        jLabel5.setText("jLabel1");
-        getContentPane().add(jLabel5);
+        lbMin.setText("Minute: ");
+        getContentPane().add(lbMin);
 
-        jTextField5.setText("jTextField1");
-        getContentPane().add(jTextField5);
+        tfMin.setText("jTextField1");
+        getContentPane().add(tfMin);
 
-        jLabel6.setText("jLabel1");
-        getContentPane().add(jLabel6);
+        lbText.setText("Text: ");
+        getContentPane().add(lbText);
 
-        jTextField6.setText("jTextField1");
-        getContentPane().add(jTextField6);
+        tfText.setText("jTextField1");
+        getContentPane().add(tfText);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("übernehmen");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
 
-        jButton2.setText("jButton2");
+        jButton2.setText("abbrechen");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,17 +174,17 @@ public class TerminkalenderDialog extends javax.swing.JDialog
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lbDay;
+    private javax.swing.JLabel lbHour;
+    private javax.swing.JLabel lbMin;
+    private javax.swing.JLabel lbMonth;
+    private javax.swing.JLabel lbText;
+    private javax.swing.JLabel lbYear;
+    private javax.swing.JTextField tfDay;
+    private javax.swing.JTextField tfHour;
+    private javax.swing.JTextField tfMin;
+    private javax.swing.JTextField tfMonth;
+    private javax.swing.JTextField tfText;
+    private javax.swing.JTextField tfYear;
     // End of variables declaration//GEN-END:variables
 }
