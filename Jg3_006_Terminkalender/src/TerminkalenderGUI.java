@@ -91,7 +91,7 @@ public class TerminkalenderGUI extends javax.swing.JFrame
 
     private void miAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miAddActionPerformed
     {//GEN-HEADEREND:event_miAddActionPerformed
-        // TODO add your handling code here:
+        TerminkalenderDialog dlg = new TerminkalenderDialog();
     }//GEN-LAST:event_miAddActionPerformed
 
     private void miDelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDelActionPerformed
