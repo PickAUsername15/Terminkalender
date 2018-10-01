@@ -35,8 +35,9 @@ public class AppointmentModell extends AbstractListModel {
     void add(Appointment a) {
         appointmentsSorted.add(a);
         appointments.add(a);
-        sort();
         fireIntervalAdded(this, appointmentsSorted.size() - 1, appointmentsSorted.size() - 1);
+        sort();
+        fireContentsChanged(this, 0, appointmentsSorted.size()-1);
     }
 
     void remove(Appointment a) {
@@ -55,9 +56,9 @@ public class AppointmentModell extends AbstractListModel {
 
     void load(File f) throws Exception {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-        Object s = null;
-        while ((s = ois.readObject()) != null) {
-            add((Appointment) s);
+        Object a = null;
+        while ((a = ois.readObject()) != null) {
+            add((Appointment) a);
         }
     }
 
