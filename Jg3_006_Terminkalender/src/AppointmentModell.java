@@ -42,8 +42,9 @@ public class AppointmentModell extends AbstractListModel {
 
     void remove(Appointment a) {
         appointmentsSorted.remove(a);
+        
+        fireIntervalRemoved(this, appointments.size() - 1, appointments.size() - 1);
         appointments.remove(a);
-        fireIntervalRemoved(this, appointmentsSorted.size() - 1, appointmentsSorted.size() - 1);
     }
 
     void save(File f) throws Exception {
