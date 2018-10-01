@@ -1,21 +1,26 @@
+
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author User
  */
-public class TerminkalenderDialog extends javax.swing.JDialog
-{
+public class TerminkalenderDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form TerminkalenderDialog
      */
-    public TerminkalenderDialog(java.awt.Frame parent, boolean modal)
-    {
+    private Appointment a = null;
+    private boolean b = false;
+
+    public TerminkalenderDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,8 +32,7 @@ public class TerminkalenderDialog extends javax.swing.JDialog
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lbDay = new javax.swing.JLabel();
         tfDay = new javax.swing.JTextField();
@@ -42,127 +46,124 @@ public class TerminkalenderDialog extends javax.swing.JDialog
         tfMin = new javax.swing.JTextField();
         lbText = new javax.swing.JLabel();
         tfText = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btUebernehmen = new javax.swing.JButton();
+        btAbbrechen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(7, 2));
 
+        lbDay.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbDay.setText("Tag: ");
         getContentPane().add(lbDay);
-
-        tfDay.setText("jTextField1");
         getContentPane().add(tfDay);
 
+        lbMonth.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbMonth.setText("Monat: ");
         getContentPane().add(lbMonth);
-
-        tfMonth.setText("jTextField1");
         getContentPane().add(tfMonth);
 
+        lbYear.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbYear.setText("Jahr: ");
         getContentPane().add(lbYear);
-
-        tfYear.setText("jTextField1");
         getContentPane().add(tfYear);
 
+        lbHour.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbHour.setText("Stunde: ");
         getContentPane().add(lbHour);
-
-        tfHour.setText("jTextField1");
         getContentPane().add(tfHour);
 
+        lbMin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbMin.setText("Minute: ");
         getContentPane().add(lbMin);
-
-        tfMin.setText("jTextField1");
         getContentPane().add(tfMin);
 
+        lbText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbText.setText("Text: ");
         getContentPane().add(lbText);
-
-        tfText.setText("jTextField1");
         getContentPane().add(tfText);
 
-        jButton1.setText("übernehmen");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton1ActionPerformed(evt);
+        btUebernehmen.setText("übernehmen");
+        btUebernehmen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUebernehmenActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
+        getContentPane().add(btUebernehmen);
 
-        jButton2.setText("abbrechen");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton2ActionPerformed(evt);
+        btAbbrechen.setText("abbrechen");
+        btAbbrechen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbbrechenActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
+        getContentPane().add(btAbbrechen);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btUebernehmenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btUebernehmenActionPerformed
+    {//GEN-HEADEREND:event_btUebernehmenActionPerformed
+        b = true;
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
-    {//GEN-HEADEREND:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        int day = Integer.parseInt(tfDay.getText());
+        int month = Integer.parseInt(tfMonth.getText());
+        int year = Integer.parseInt(tfYear.getText());
+        int hour = Integer.parseInt(tfHour.getText());
+        int minute = Integer.parseInt(tfMin.getText());
+        String text = tfText.getText();
 
+        LocalDateTime ldt = LocalDateTime.of(year, month, day, hour, minute);
+        a = new Appointment(text, ldt);
+        this.dispose();
+    }//GEN-LAST:event_btUebernehmenActionPerformed
+
+    private void btAbbrechenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btAbbrechenActionPerformed
+    {//GEN-HEADEREND:event_btAbbrechenActionPerformed
+        b = false;
+        this.dispose();
+    }//GEN-LAST:event_btAbbrechenActionPerformed
+
+    boolean isOk(){
+        return b;
+    }
+    
+    Appointment getAppointment(){
+        return a;
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(TerminkalenderDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(TerminkalenderDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(TerminkalenderDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TerminkalenderDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 TerminkalenderDialog dialog = new TerminkalenderDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter()
-                {
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
-                    public void windowClosing(java.awt.event.WindowEvent e)
-                    {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
@@ -172,8 +173,8 @@ public class TerminkalenderDialog extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btAbbrechen;
+    private javax.swing.JButton btUebernehmen;
     private javax.swing.JLabel lbDay;
     private javax.swing.JLabel lbHour;
     private javax.swing.JLabel lbMin;

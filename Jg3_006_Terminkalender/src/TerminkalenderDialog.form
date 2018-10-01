@@ -28,78 +28,66 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lbDay">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Tag: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfDay">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMonth">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Monat: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfMonth">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbYear">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Jahr: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfYear">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbHour">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Stunde: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfHour">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMin">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Minute: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfMin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbText">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Text: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfText">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btUebernehmen">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xfc;bernehmen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btUebernehmenActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btAbbrechen">
       <Properties>
         <Property name="text" type="java.lang.String" value="abbrechen"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAbbrechenActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
