@@ -123,13 +123,24 @@ public class TerminkalenderDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btAbbrechenActionPerformed
 
-    boolean isOk(){
+    public void loadDatas(Appointment a)
+    {
+        tfDay.setText(""+a.getLdt().getDayOfMonth());
+        tfHour.setText(""+a.getLdt().getHour());
+        tfMin.setText(""+a.getLdt().getMinute());
+        tfMonth.setText(""+a.getLdt().getMonth());
+        tfText.setText(a.getText());
+        tfYear.setText(""+a.getLdt().getYear());
+    }
+    public  boolean isOk(){
         return b;
     }
     
-    Appointment getAppointment(){
+    public Appointment getAppointment(){
         return a;
     }
+    
+    
     /**
      * @param args the command line arguments
      */
