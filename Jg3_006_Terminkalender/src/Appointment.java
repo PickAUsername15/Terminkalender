@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /*
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  *
  * @author Dominik Roth
  */
-public class Appointment {
+public class Appointment implements Serializable{
     private String text;
     private LocalDateTime ldt;
 
