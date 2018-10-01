@@ -67,7 +67,7 @@ public class AppointmentModell extends AbstractListModel {
         fireContentsChanged(this, 0, appointmentsSorted.size() - 1);
     }
 
-    void quicksortAppointment(int r, int l) {
+    void quicksortAppointment(int l, int r) {
         if (l >= r) {
             return;
         }

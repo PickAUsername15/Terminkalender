@@ -1,4 +1,5 @@
 
+import java.io.EOFException;
 import java.io.File;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -23,7 +24,10 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
         initComponents();
         try {
             bl.load(new File("./data.bin"));
-        } catch (Exception ex) {
+        }catch (EOFException ex) {
+            
+        }
+        catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Exception: "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         liDisplay.setModel(bl);
