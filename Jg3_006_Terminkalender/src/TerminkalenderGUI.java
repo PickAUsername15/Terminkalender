@@ -120,7 +120,7 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_miDelActionPerformed
         int[] idx = liDisplay.getSelectedIndices();
         
-        for(int i = 0; i < idx.length; i++)
+        for(int i = idx.length-1 ; i >= 0; i--)
         {
             bl.remove((Appointment) bl.getElementAt(idx[i]));
         }
