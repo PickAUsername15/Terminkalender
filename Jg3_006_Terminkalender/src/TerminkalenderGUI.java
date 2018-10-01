@@ -17,8 +17,10 @@ public class TerminkalenderGUI extends javax.swing.JFrame
     public TerminkalenderGUI()
     {
         initComponents();
+        liDisplay.setModel(bl);
     }
 
+    AppointmentModell bl = new AppointmentModell();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,17 +93,37 @@ public class TerminkalenderGUI extends javax.swing.JFrame
 
     private void miAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miAddActionPerformed
     {//GEN-HEADEREND:event_miAddActionPerformed
-        TerminkalenderDialog dlg = new TerminkalenderDialog();
+       TerminkalenderDialog dlg= new TerminkalenderDialog(this, true);
+
+       dlg.setVisible(true);
+       
+       if(dlg.isOk())
+       {
+           bl.add(dlg.getAppointment());
+       }
+       
+       
+       
     }//GEN-LAST:event_miAddActionPerformed
 
     private void miDelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDelActionPerformed
     {//GEN-HEADEREND:event_miDelActionPerformed
-        // TODO add your handling code here:
+ 
+        bl.remove((Appointment)bl.getElementAt(liDisplay.getSelectedIndex()));
     }//GEN-LAST:event_miDelActionPerformed
 
     private void miChangeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miChangeActionPerformed
     {//GEN-HEADEREND:event_miChangeActionPerformed
-        // TODO add your handling code here:
+       TerminkalenderDialog dlg= new TerminkalenderDialog(this, true);
+       
+       dlg.setVisible(true);
+       dlg.loadDatas((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+       
+       if(dlg.isOk())
+       {
+           bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+           bl.add(dlg.getAppointment());
+       }
     }//GEN-LAST:event_miChangeActionPerformed
 
     /**
