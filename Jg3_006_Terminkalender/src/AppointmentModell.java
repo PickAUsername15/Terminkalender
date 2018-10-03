@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.AbstractListModel;
+import javax.swing.table.AbstractTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,36 +17,57 @@ import javax.swing.AbstractListModel;
  *
  * @author Dominik Roth
  */
-public class AppointmentModell extends AbstractListModel {
+public class AppointmentModell extends AbstractTableModel {
 
     private ArrayList<Appointment> appointments = new ArrayList<>();
     private ArrayList<Appointment> appointmentsSorted = new ArrayList<>();
 
     @Override
-    public int getSize() {
+    public int getRowCount() {
         return appointmentsSorted.size();
     }
 
     @Override
-    public Object getElementAt(int index) {
-        return appointmentsSorted.get(index);
+    public int getColumnCount() {
+        return 3;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Object b = null;
+
+        switch (columnIndex) {
+            case 0:
+                b = appointmentsSorted.get(rowIndex).getDate();
+                break;
+            case 1:
+                b = appointmentsSorted.get(rowIndex).getTime();
+                break;
+            case 2:
+                b = appointmentsSorted.get(rowIndex).getText();
+                break;
+            default:
+                b = "not found";
+        }
+
+        return b;
     }
 
     void add(Appointment a) {
         appointmentsSorted.add(a);
         appointments.add(a);
-        fireIntervalAdded(this, appointmentsSorted.size() - 1, appointmentsSorted.size() - 1);
+        fireTableDataChanged();
         sort();
-        fireContentsChanged(this, 0, appointmentsSorted.size()-1);
+        fireTableDataChanged();
     }
 
     void remove(Appointment a) {
         appointmentsSorted.remove(a);
-        
-        fireIntervalRemoved(this, appointments.size() - 1, appointments.size() - 1);
+
+        fireTableDataChanged();
         appointments.remove(a);
     }
-
+    
     void save(File f) throws Exception {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
 
@@ -65,7 +86,7 @@ public class AppointmentModell extends AbstractListModel {
 
     void sort() {
         quicksortAppointment(0, appointmentsSorted.size() - 1);
-        fireContentsChanged(this, 0, appointmentsSorted.size() - 1);
+        fireTableDataChanged();
     }
 
     void quicksortAppointment(int l, int r) {

@@ -33,7 +33,7 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "Exception: "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        liDisplay.setModel(bl);
+        taTable.setModel(bl);
     }
 
     AppointmentModell bl = new AppointmentModell();
@@ -52,8 +52,8 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
         miAdd = new javax.swing.JMenuItem();
         miDel = new javax.swing.JMenuItem();
         miChange = new javax.swing.JMenuItem();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        liDisplay = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taTable = new javax.swing.JTable();
 
         muTermine.setText("Termine");
 
@@ -91,16 +91,20 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
             }
         });
 
-        liDisplay.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
-        liDisplay.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        liDisplay.setComponentPopupMenu(pm);
-        jScrollPane1.setViewportView(liDisplay);
+        taTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(taTable);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,25 +128,25 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
 
     private void miDelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDelActionPerformed
     {//GEN-HEADEREND:event_miDelActionPerformed
-        int[] idx = liDisplay.getSelectedIndices();
-        
-        for(int i = idx.length-1 ; i >= 0; i--)
-        {
-            bl.remove((Appointment) bl.getElementAt(idx[i]));
-        }
+//        int[] idx = taTable.getSelectedRows();
+//        
+//        for(int i = idx.length-1 ; i >= 0; i--)
+//        {
+//            bl.remove((Appointment) bl.getRowValue(idx[i]));
+//        }
     }//GEN-LAST:event_miDelActionPerformed
 
     private void miChangeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miChangeActionPerformed
     {//GEN-HEADEREND:event_miChangeActionPerformed
-        TerminkalenderDialog dlg = new TerminkalenderDialog(this, true);
-
-        dlg.setVisible(true);
-        dlg.loadDatas((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
-
-        if (dlg.isOk()) {
-            bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
-            bl.add(dlg.getAppointment());
-        }
+//        TerminkalenderDialog dlg = new TerminkalenderDialog(this, true);
+//
+//        dlg.setVisible(true);
+//        dlg.loadDatas((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+//
+//        if (dlg.isOk()) {
+//            bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+//            bl.add(dlg.getAppointment());
+//        }
     }//GEN-LAST:event_miChangeActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -189,12 +193,12 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> liDisplay;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuItem miAdd;
     private javax.swing.JMenuItem miChange;
     private javax.swing.JMenuItem miDel;
     private javax.swing.JMenu muTermine;
     private javax.swing.JPopupMenu pm;
+    private javax.swing.JTable taTable;
     // End of variables declaration//GEN-END:variables
 }
