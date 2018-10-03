@@ -107,13 +107,16 @@ public class TerminkalenderDialog extends javax.swing.JDialog {
         
         try{
             b = true;
-
+            
             int day = Integer.parseInt(tfDay.getText());
             int month = Integer.parseInt(tfMonth.getText());
             int year = Integer.parseInt(tfYear.getText());
             int hour = Integer.parseInt(tfHour.getText());
             int minute = Integer.parseInt(tfMin.getText());
             String text = tfText.getText();
+            
+            if(day < 1 ||month < 1  || year < 1 ||hour < 0 || minute < 0)
+                throw new Exception("Negative Werte sind nicht erlaubt");
 
             LocalDateTime ldt = LocalDateTime.of(year, month, day, hour, minute);
             a = new Appointment(text, ldt);
