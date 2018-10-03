@@ -136,12 +136,23 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_miChangeActionPerformed
         TerminkalenderDialog dlg = new TerminkalenderDialog(this, true);
 
-        dlg.setVisible(true);
-        dlg.loadDatas((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+        try{
+            if(liDisplay.getSelectedIndex() >= 0)
+            {
+                dlg.setVisible(true);
+                dlg.loadDatas((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
 
-        if (dlg.isOk()) {
-            bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
-            bl.add(dlg.getAppointment());
+                if (dlg.isOk()) {
+                    bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
+                    bl.add(dlg.getAppointment());
+                }
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Bitte wähle zuerst einen Termin aus");
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_miChangeActionPerformed
 
