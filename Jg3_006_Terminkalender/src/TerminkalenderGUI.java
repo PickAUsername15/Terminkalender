@@ -1,10 +1,12 @@
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.EOFException;
 import java.io.File;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,18 +24,45 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
      */
     public TerminkalenderGUI() {
         initComponents();
+
         try {
             bl.load(new File("./data.bin"));
 
-        }catch (EOFException ex) {
-            
-        }
-         catch (Exception ex) {
-            
+        } catch (FileNotFoundException e) {
+        } catch (EOFException ex) {
 
-            JOptionPane.showMessageDialog(this, "Exception: "+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(this, "Exception: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        bl.addCols();
         taTable.setModel(bl);
+
+        taTable.getTableHeader().addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    pm.show(taTable.getTableHeader(), e.getX(), e.getY());
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 
     AppointmentModell bl = new AppointmentModell();
@@ -102,9 +131,25 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        taTable.setComponentPopupMenu(pm);
+        taTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        taTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                taTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(taTable);
 
-        getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,25 +173,24 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
 
     private void miDelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miDelActionPerformed
     {//GEN-HEADEREND:event_miDelActionPerformed
-//        int[] idx = taTable.getSelectedRows();
-//        
-//        for(int i = idx.length-1 ; i >= 0; i--)
-//        {
-//            bl.remove((Appointment) bl.getRowValue(idx[i]));
-//        }
+        int[] idx = taTable.getSelectedRows();
+
+        for (int i = idx.length - 1; i >= 0; i--) {
+            bl.remove((Appointment) bl.getRowValue(idx[i]));
+        }
     }//GEN-LAST:event_miDelActionPerformed
 
     private void miChangeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miChangeActionPerformed
     {//GEN-HEADEREND:event_miChangeActionPerformed
-//        TerminkalenderDialog dlg = new TerminkalenderDialog(this, true);
-//
-//        dlg.setVisible(true);
-//        dlg.loadDatas((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
-//
-//        if (dlg.isOk()) {
-//            bl.remove((Appointment) bl.getElementAt(liDisplay.getSelectedIndex()));
-//            bl.add(dlg.getAppointment());
-//        }
+        TerminkalenderDialog dlg = new TerminkalenderDialog(this, true);
+
+        dlg.setVisible(true);
+        dlg.loadDatas((Appointment) bl.getRowValue(taTable.getSelectedRow()));
+
+        if (dlg.isOk()) {
+            bl.remove((Appointment) bl.getRowValue(taTable.getSelectedRow()));
+            bl.add(dlg.getAppointment());
+        }
     }//GEN-LAST:event_miChangeActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -156,6 +200,10 @@ public class TerminkalenderGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Exception: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void taTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taTableMouseClicked
+        System.out.println("sd");
+    }//GEN-LAST:event_taTableMouseClicked
 
     /**
      * @param args the command line arguments

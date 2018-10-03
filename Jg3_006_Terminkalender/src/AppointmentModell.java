@@ -22,14 +22,28 @@ public class AppointmentModell extends AbstractTableModel {
     private ArrayList<Appointment> appointments = new ArrayList<>();
     private ArrayList<Appointment> appointmentsSorted = new ArrayList<>();
 
+    private ArrayList<String> cols = new ArrayList<>();
+
+    public void addCols() {
+        cols.add("Date");
+        cols.add("Time");
+        cols.add("Text");
+        fireTableStructureChanged();
+    }
+
     @Override
     public int getRowCount() {
         return appointmentsSorted.size();
     }
 
     @Override
+    public String getColumnName(int col) {
+        return cols.get(col);
+    }
+
+    @Override
     public int getColumnCount() {
-        return 3;
+        return cols.size();
     }
 
     @Override
@@ -53,6 +67,10 @@ public class AppointmentModell extends AbstractTableModel {
         return b;
     }
 
+    public Appointment getRowValue(int i) {
+        return appointmentsSorted.get(i);
+    }
+
     void add(Appointment a) {
         appointmentsSorted.add(a);
         appointments.add(a);
@@ -67,7 +85,7 @@ public class AppointmentModell extends AbstractTableModel {
         fireTableDataChanged();
         appointments.remove(a);
     }
-    
+
     void save(File f) throws Exception {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
 
