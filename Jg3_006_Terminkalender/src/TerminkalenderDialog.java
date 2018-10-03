@@ -2,6 +2,7 @@
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -103,18 +104,29 @@ public class TerminkalenderDialog extends javax.swing.JDialog {
 
     private void btUebernehmenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btUebernehmenActionPerformed
     {//GEN-HEADEREND:event_btUebernehmenActionPerformed
-        b = true;
+        
+        try{
+            b = true;
+            
+            int day = Integer.parseInt(tfDay.getText());
+            int month = Integer.parseInt(tfMonth.getText());
+            int year = Integer.parseInt(tfYear.getText());
+            int hour = Integer.parseInt(tfHour.getText());
+            int minute = Integer.parseInt(tfMin.getText());
+            String text = tfText.getText();
+            
+            if(day < 1 ||month < 1  || year < 1 ||hour < 0 || minute < 0)
+                throw new Exception("Negative Werte sind nicht erlaubt");
 
-        int day = Integer.parseInt(tfDay.getText());
-        int month = Integer.parseInt(tfMonth.getText());
-        int year = Integer.parseInt(tfYear.getText());
-        int hour = Integer.parseInt(tfHour.getText());
-        int minute = Integer.parseInt(tfMin.getText());
-        String text = tfText.getText();
-
-        LocalDateTime ldt = LocalDateTime.of(year, month, day, hour, minute);
-        a = new Appointment(text, ldt);
-        this.dispose();
+            LocalDateTime ldt = LocalDateTime.of(year, month, day, hour, minute);
+            a = new Appointment(text, ldt);
+            this.dispose();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
     }//GEN-LAST:event_btUebernehmenActionPerformed
 
     private void btAbbrechenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btAbbrechenActionPerformed
